@@ -49,6 +49,10 @@ x-airflow-common:
   # Use custom image that builds on top of default airflow image (currently; Default: apache/airflow:2.9.2)
   # Image stored on Dockerhub
   image: ${DOCKERHUB_NAMESPACE}/${DOCKERHUB_REPOSITORY}:${IMAGE_TAG}
+  #build:
+  #  context: .
+  #  dockerfile: Dockerfile
+  #image: yt_api_elt:local
   # Use the .env file to read the connection params and variables - SWITCH THIS OFF WHEN USING GITHUB ACTIONS
   env_file:
     - .env
@@ -130,7 +134,7 @@ services:
     #   - POSTGRES_CONN_HOST=${POSTGRES_CONN_HOST}
     #   - POSTGRES_CONN_PORT=${POSTGRES_CONN_PORT}
     ports:
-      - 5432:5432
+      - 5434:5432
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
       - ./docker/postgres/init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
